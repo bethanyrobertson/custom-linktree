@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import {GitHubIcon,TwitterIcon,LinkCard} from "./icons"
+import {LinkCard} from "./icons"
 import data from "../data/data.json"
 
 
@@ -19,27 +19,10 @@ export default async function HomePage() {
         width={96}
         height={96}
       />
-      <h1 className="font-bold mt-4 mb-8 text-xl text-white">{data.name}</h1>
+      <h1 className="font-mono mt-4 mb-8 text-xl text-white">{data.name}</h1>
       {data.links.map((link) => (
         <LinkCard key={link.href} {...link} />
       ))}
-      <div className="flex items-center gap-4 mt-8 text-white">
-        {data.socials.map((social) => (
-          <a
-            aria-label={`${social.title} link`}
-            key={social.href}
-            href={social.href}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {social.href.includes('twitter') ? (
-              <TwitterIcon />
-            ) : social.href.includes('github') ? (
-              <GitHubIcon />
-            ) : null}
-          </a>
-        ))}
-      </div>
     </div>
   );
 }
