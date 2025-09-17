@@ -5,3 +5,22 @@
 body {
   height: 100vh;
 }
+
+/* Animated gradient fallback */
+.animated-gradient {
+  background: linear-gradient(-45deg, #7300ff, #eba8ff, #dbc5e2, #7300ff);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
