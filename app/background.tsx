@@ -1,7 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { Suspense } from 'react';
+import { Suspense, useState, useEffect } from 'react';
 
 const GrainGradient = dynamic(
   () => import('@paper-design/shaders-react').then((mod) => mod.GrainGradient),
@@ -14,6 +14,19 @@ const GrainGradient = dynamic(
 );
 
 export default function Background() {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  // Show fallback gradient until component is mounted
+  if (!isMounted) {
+    return (
+      <div className="fixed inset-0 -z-10 bg-gradient-to-br from-purple-600 via-pink-300 to-purple-200" />
+    );
+  }
+
   return (
     <div className="fixed inset-0 -z-10">
       <Suspense fallback={<div className="fixed inset-0 -z-10 bg-gradient-to-br from-purple-600 via-pink-300 to-purple-200" />}>
